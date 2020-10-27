@@ -1,0 +1,43 @@
+on:
+  #schedule:
+  #  - cron: "* 9 * * *"
+  repository_dispatch:
+    types: [scorecard]
+
+name: EngineeringScoreCard
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Azure CLI Action
+        id: psscript
+        shell: powershell
+        run: |
+          $result = &.\EngineeringScoreCard.ps1 -teamName Boards -headCount 6 -areaPath AzureDevOps\VSTS\Apps\Boards
+          echo "::set-output name=scorecard::$result"
+        env:
+          AZURE_DEVOPS_EXT_PAT: ${{ secrets.SNANKANI_PRIVATE_PAT }}
+
+      - name: Check outputs
+        id: checkoutput
+        shell: powershell
+        run: |
+          echo '${{ steps.psscript.outputs.scorecard}}'
+
+      - name: Push Notification
+        uses: ProtocolRedefined/Dynamic-Template-Engine@master
+        with:
+          repoName: ProtocolRedefined/Ecosystem-Template-Repository
+          branchName: master
+          data: '{ "message" : ${{ steps.psscript.outputs.scorecard }} }'
+          templateType: HandleBars
+          sourceType: ScoreCard
+          ClientType: Teams

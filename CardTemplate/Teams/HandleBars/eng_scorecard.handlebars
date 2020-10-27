@@ -1,0 +1,180 @@
+{
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "{{message.teamscorecard.teamDetails.name}}",
+      "size": "large",
+      "weight": "bolder"
+    },
+    {
+      "type": "ColumnSet",
+      "separator": true,
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "[{{message.teamscorecard.scoreCardOutputs.StaleLsiRepairItems.count}}]({{message.teamscorecard.scoreCardOutputs.StaleLsiRepairItems.scoreCardQueryUrl}})"
+            },
+            {
+              "type": "TextBlock",
+              "text": "[{{message.teamscorecard.scoreCardOutputs.StaleDTSs.count}}]({{message.teamscorecard.scoreCardOutputs.StaleDTSs.scoreCardQueryUrl}})"
+            },
+            {
+              "type": "TextBlock",
+              "text": "[{{message.teamscorecard.scoreCardOutputs.ActiveP0Bugs.count}}]({{message.teamscorecard.scoreCardOutputs.ActiveP0Bugs.scoreCardQueryUrl}})"
+            },
+            {
+              "type": "TextBlock",
+              "text": "[{{message.teamscorecard.scoreCardOutputs.StaleP1Bugs.count}}]({{message.teamscorecard.scoreCardOutputs.StaleP1Bugs.scoreCardQueryUrl}})"
+            },
+            {
+              "type": "TextBlock",
+              "text": "[{{message.teamscorecard.scoreCardOutputs.BugsPerEngineer.count}}]({{message.teamscorecard.scoreCardOutputs.BugsPerEngineer.scoreCardQueryUrl}})"
+            },
+            {
+              "type": "TextBlock",
+              "text": "[{{message.teamscorecard.scoreCardOutputs.StaleSecurityItems.count}}]({{message.teamscorecard.scoreCardOutputs.StaleSecurityItems.scoreCardQueryUrl}})"
+            },
+            {
+              "type": "TextBlock",
+              "text": "[{{message.teamscorecard.scoreCardOutputs.StaleAccessibilityBugs.count}}]({{message.teamscorecard.scoreCardOutputs.StaleAccessibilityBugs.scoreCardQueryUrl}})"
+            },
+            {
+              "type": "TextBlock",
+              "text": "[{{message.teamscorecard.scoreCardOutputs.StaleReliabilityItems.count}}]({{message.teamscorecard.scoreCardOutputs.StaleReliabilityItems.scoreCardQueryUrl}})"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "spacing":"extraLarge",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "{{message.teamscorecard.scoreCardOutputs.StaleLsiRepairItems.name}}"
+            },
+            {
+              "type": "TextBlock",
+              "text": "{{message.teamscorecard.scoreCardOutputs.StaleDTSs.name}}"
+            },
+            {
+              "type": "TextBlock",
+              "text": "{{message.teamscorecard.scoreCardOutputs.ActiveP0Bugs.name}}"
+            },
+            {
+              "type": "TextBlock",
+              "text": "{{message.teamscorecard.scoreCardOutputs.StaleP1Bugs.name}}"
+            },
+            {
+              "type": "TextBlock",
+              "text": "{{message.teamscorecard.scoreCardOutputs.BugsPerEngineer.name}}"
+            },
+            {
+              "type": "TextBlock",
+              "text": "{{message.teamscorecard.scoreCardOutputs.StaleSecurityItems.name}}"
+            },
+            {
+              "type": "TextBlock",
+              "text": "{{message.teamscorecard.scoreCardOutputs.StaleAccessibilityBugs.name}}"
+            },
+            {
+              "type": "TextBlock",
+              "text": "{{message.teamscorecard.scoreCardOutputs.StaleReliabilityItems.name}}"
+            }
+          ]
+        },
+        {
+          "type":"Column",
+          "items":[
+            {
+              "type":"Image",
+              {{#if message.teamscorecard.scoreCardOutputs.StaleLsiRepairItems.needsAttention}}
+              "url":"https://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png",
+              {{else}}
+              "url":"https://pluspng.com/img-png/green-tick-png-hd-green-tick-png-image-600.png",
+              {{/if}}
+              "height": "18px",
+              "width": "18px"
+            },
+            {
+              "type":"Image",
+              {{#if message.teamscorecard.scoreCardOutputs.StaleDTSs.needsAttention}}
+              "url":"https://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png",
+              {{else}}
+              "url":"https://pluspng.com/img-png/green-tick-png-hd-green-tick-png-image-600.png",
+              {{/if}}
+              "height": "18px",
+              "width": "18px"
+            },
+            {
+              "type":"Image",
+              {{#if message.teamscorecard.scoreCardOutputs.ActiveP0Bugs.needsAttention}}
+              "url":"https://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png",
+              {{else}}
+              "url":"https://pluspng.com/img-png/green-tick-png-hd-green-tick-png-image-600.png",
+              {{/if}}
+              "height": "18px",
+              "width": "18px"
+            },
+            {
+              "type":"Image",
+              {{#if message.teamscorecard.scoreCardOutputs.StaleP1Bugs.needsAttention}}
+              "url":"https://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png",
+              {{else}}
+              "url":"https://pluspng.com/img-png/green-tick-png-hd-green-tick-png-image-600.png",
+              {{/if}}
+              "height": "18px",
+              "width": "18px"
+            },
+            {
+              "type":"Image",
+              {{#if message.teamscorecard.scoreCardOutputs.BugsPerEngineer.needsAttention}}
+              "url":"https://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png",
+              {{else}}
+              "url":"https://pluspng.com/img-png/green-tick-png-hd-green-tick-png-image-600.png",
+              {{/if}}
+              "height": "18px",
+              "width": "18px"
+            },
+            {
+              "type":"Image",
+              {{#if message.teamscorecard.scoreCardOutputs.StaleSecurityItems.needsAttention}}
+              "url":"https://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png",
+              {{else}}
+              "url":"https://pluspng.com/img-png/green-tick-png-hd-green-tick-png-image-600.png",
+              {{/if}}
+              "height": "18px",
+              "width": "18px"
+            },
+            {
+              "type":"Image",
+              {{#if message.teamscorecard.scoreCardOutputs.StaleAccessibilityBugs.needsAttention}}
+              "url":"https://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png",
+              {{else}}
+              "url":"https://pluspng.com/img-png/green-tick-png-hd-green-tick-png-image-600.png",
+              {{/if}}
+              "height": "18px",
+              "width": "18px"
+            },
+            {
+              "type":"Image",
+              {{#if message.teamscorecard.scoreCardOutputs.StaleReliabilityItems.needsAttention}}
+              "url":"https://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png",
+              {{else}}
+              "url":"https://pluspng.com/img-png/green-tick-png-hd-green-tick-png-image-600.png",
+              {{/if}}
+              "height": "18px",
+              "width": "18px"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.2"
+}
