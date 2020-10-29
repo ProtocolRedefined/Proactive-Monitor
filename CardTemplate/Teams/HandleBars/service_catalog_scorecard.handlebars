@@ -1,0 +1,112 @@
+{
+"type": "AdaptiveCard",
+"$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+"version": "1.2",
+"body": [
+{{#each message}}
+{
+"type": "FactSet",
+"facts": [
+{
+"title": "Service",
+"value": "{{this.data.service.name}}"
+},
+{
+"title": "Maintainer",
+"value": "{{this.data.service.maintainer.name}}"
+}
+]
+},
+{
+"type": "ColumnSet",
+"columns": [
+{
+"type": "Column",
+"width": "stretch",
+"items": [
+{
+"type": "TextBlock",
+"text": "Description"
+},
+{{#each this.data.service.scorecards.edges}}
+{
+"type": "TextBlock",
+"text": "{{this.node.description}}"
+},
+{{/each}}
+{
+"type": "TextBlock",
+"url": ""
+}
+]
+},
+{
+"type": "Column",
+"items": [
+{
+"type": "TextBlock",
+"text": "Max Score"
+},
+{{#each this.data.service.scorecards.edges}}
+{
+"type": "TextBlock",
+"text": "{{this.node.scorecardSummaries.nodes.0.maxScore}}"
+},
+{{/each}}
+{
+"type": "TextBlock",
+"url": ""
+}
+]
+},
+{
+"type": "Column",
+"items": [
+{
+"type": "TextBlock",
+"text": "Score"
+},
+{{#each this.data.service.scorecards.edges}}
+{
+"type": "TextBlock",
+"text": "{{this.node.scorecardSummaries.nodes.0.score}}"
+},
+{{/each}}
+{
+"type": "TextBlock",
+"url": ""
+}
+]
+},
+{
+"type": "Column",
+"width": "20px",
+"items": [
+{
+"type": "TextBlock",
+"text": "."
+},
+{{#each this.data.service.scorecards.edges}}
+{
+"type": "Image",
+"url": "{{this.node.scorecardSummaries.nodes.0.Status}}",
+"height": "18px",
+"width": "18px"
+},
+{{/each}}
+{
+"type": "TextBlock",
+"url": ""
+}
+]
+}
+]
+},
+{{/each}}
+{
+"type": "TextBlock",
+"text": "Powered by teams integration",
+"wrap": true
+}
+]
+}
