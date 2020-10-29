@@ -24,7 +24,7 @@ jobs:
           $result = &.\EngineeringScoreCard.ps1 -teamName Boards -headCount 6 -areaPath AzureDevOps\VSTS\Apps\Boards
           echo "::set-output name=scorecard::$result"
         env:
-          AZURE_DEVOPS_EXT_PAT: ${{ secrets.SNANKANI_PRIVATE_PAT }}
+          AZURE_DEVOPS_EXT_PAT: ${{ secrets.ADO_PAT }}
 
       - name: Check outputs
         id: checkoutput
