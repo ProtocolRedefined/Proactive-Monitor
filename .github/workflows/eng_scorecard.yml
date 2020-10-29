@@ -37,8 +37,8 @@ jobs:
       - name: Push Notification
         uses: ProtocolRedefined/Dynamic-Template-Engine@master
         with:
-          # repoName: ProtocolRedefined/Proactive-Monitor-Test1
-          # branchName: master
+          repoName: ProtocolRedefined/Proactive-Monitor-Test1
+          branchName: main
           data: '{ "message" : ${{ steps.psscript.outputs.scorecard }} }'
           templateType: HandleBars
           sourceType: ScoreCard
