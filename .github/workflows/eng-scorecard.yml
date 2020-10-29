@@ -1,10 +1,14 @@
 on:
   schedule:
     - cron: "*/5 * * * *"
-  repository_dispatch:
-    types: [eng-scorecard]
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "retrieve scorecard details from ADO and post the message to user's Teams or Slack channel"
+        required: true
+        default: "Mona the Octocat"
   push:
-    branches: [ main ]
+    branches: [main]
 
 name: EngineeringScoreCard
 
