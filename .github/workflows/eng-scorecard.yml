@@ -7,8 +7,6 @@ on:
         description: "retrieve scorecard details from ADO and post the message to user's Teams or Slack channel"
         required: true
         default: "Mona the Octocat"
-  push:
-    branches: [main]
 
 name: EngineeringScoreCard
 
