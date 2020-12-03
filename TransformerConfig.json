@@ -5,6 +5,12 @@
       "ClientType": "Teams",
       "TemplateType": "HandleBars",
       "TemplateName": "eng_scorecard.handlebars"
+    },
+    {
+      "SourceType": "CatalogScoreCard",
+      "ClientType": "Slack",
+      "TemplateType": "HandleBars",
+      "TemplateName": "service_catalog_scorecard.handlebars"
     }
   ],
   "partials": [],

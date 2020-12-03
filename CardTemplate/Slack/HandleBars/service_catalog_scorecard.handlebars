@@ -1,0 +1,66 @@
+{
+"type": "customPayload",
+"actual_payload":{
+"blocks": [
+{
+"type": "section",
+{{setVar "fieldsNeeded" "false"}}
+{{setVar "passedServices" ""}}
+{{#each message}}
+{{setVar "failure" "false"}}
+{{#each this.data.service.scorecards.edges}}{{#if (ifEq this.node.scorecardSummaries.nodes.0.Status 'https://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png')}}{{setVar "failure" "true"}}{{/if}}{{/each}}
+{{#if (ifEq ../failure "true")}}
+{{!--found something wrong, should start fields--}}
+{{#if (ifEq ../fieldsNeeded "true")}}
+,
+{{else}}
+{{setVar "fieldsNeeded" "true"}}
+"fields": [
+{{/if}}
+{
+"type": "mrkdwn",
+"text": "*Service:* {{truncate this.data.service.name}}"
+},
+{
+"type": "mrkdwn",
+"text": "*Owner:* {{truncate this.data.service.maintainer.name}}"
+},
+{
+"type": "mrkdwn",
+"text":
+"*Status/Description*\n{{#each this.data.service.scorecards.edges}}{{#if (ifEq this.node.scorecardSummaries.nodes.0.Status 'https://pluspng.com/img-png/red-cross-png-red-cross-png-file-2000.png')}}{{setVar "failure" "true"}}\u274C{{else}}\u2705{{/if}}
+{{truncate this.node.description}}\n{{/each}}"
+},
+{
+"type": "mrkdwn",
+"text": "*Score/Max
+Score*\n{{#each this.data.service.scorecards.edges}}{{this.node.scorecardSummaries.nodes.0.score}}/{{this.node.scorecardSummaries.nodes.0.maxScore}}\n{{/each}}"
+}
+{{else}}
+{{!-- add the service name to hurray message--}}
+{{#if (ifEq ../passedServices "")}}
+{{setVar "passedServices" this.data.service.name}}
+{{else}}
+{{setVar "passedServices" (appendCommaWithTwoStrings ../passedServices this.data.service.name)}}
+{{/if}}
+{{/if}}
+{{/each}}
+{{#if (ifEq fieldsNeeded "true")}}
+],
+{{/if}}
+"text": {
+"type": "mrkdwn",
+{{#if (ifEq passedServices "")}}
+"text": "Uh-oh!! none of the services are green"
+{{else if (ifEq fieldsNeeded "true")}}
+"text": ":tada::tada::tada: Hurray, *{{passedServices}}* are green in service catalog. Below services need your
+attention."
+{{else}}
+"text": ":tada::tada::tada: Hurray, *{{passedServices}}* are green in service catalog. None of the services need your
+attention."
+{{/if}}
+}
+}
+]
+}
+}
